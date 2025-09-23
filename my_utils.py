@@ -3,6 +3,7 @@
     * get_column - returns a list of all values for a specified column,
     only for rows where a column matches another value.
 '''
+import sys
 
 
 def get_column(file_name, query_column, query_value, result_column='Year'):
@@ -27,8 +28,10 @@ def get_column(file_name, query_column, query_value, result_column='Year'):
         f = open(file_name, 'r')
     except FileNotFoundError:
         print('Could not find ' + file_name)
+        sys.exit(1)
     except PermissionError:
         print('Could not open ' + file_name)
+        sys.exit(1)
 
     # Strip the first line to get the headers
     header_line = f.readline().strip()
@@ -44,7 +47,12 @@ def get_column(file_name, query_column, query_value, result_column='Year'):
         columns[header] = i
 
     # Get the column header through the index of our result column.
-    result_index = columns[result_column]
+    try:
+        result_index = columns[result_column]
+    except:
+        print('Column not found!')
+        f.close()
+        sys.exit(1)
 
     # For each line in our file
     for line in f:
