@@ -49,7 +49,7 @@ def get_column(file_name, query_column, query_value, result_column='Year'):
     # Get the column header through the index of our result column.
     try:
         result_index = columns[result_column]
-    except:
+    except Exception:
         print('Column not found!')
         f.close()
         sys.exit(1)
@@ -65,8 +65,10 @@ def get_column(file_name, query_column, query_value, result_column='Year'):
             try:
                 # Originally floats in strings
                 result.append(int(float(A[result_index])))
-            except:
-                print("Could not convert to integer or index is out of range.")
+            except IndexError:
+                print("Index is out of range.")
+            except Exception:
+                print('Could not convert to integer.')
 
     f.close()
     return result
