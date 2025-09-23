@@ -5,6 +5,17 @@
 
 This software prints CO2 emissions caused by forest fires in a given country. `run.sh` calls on `print_fires` using command line arguments. It calls a `get_column` function that parses through a .csv file to return the column of interest and the fire emissions in that column. 
 
-## Installation
+## Usage Examples
 
-## Usage Example
+You can run the `print_fires.py` file directly using command line arguments: 
+
+`python print_fires.py --country 'United States of America' --country_column 0 --fires_column 'Forest fires' --file_name 'Agrofood_co2_emission.csv'`
+
+Where `country` is a string of the country name of interest, `country_column` is the index of the column that country is in, `fires_column` is a string of the type of fires you would like to examine, and `file_name` is the path to the CSV data file. The function will then print CO2 emissions from fires as integers (rounded from original floats). 
+
+If the file does not exist, or is inaccessible, an error will be raised. If the column of interest does not exist, an error will be raised. 
+
+The `run.sh` file contains examples of successful and failed attempts.
+
+
+
