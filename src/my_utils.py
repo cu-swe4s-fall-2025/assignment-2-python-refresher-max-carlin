@@ -2,6 +2,9 @@
 
     * get_column - returns a list of all values for a specified column,
     only for rows where a column matches another value.
+    * mean - returns the mean of a list of numbers.
+    * median - returns the median of a list of numbers.
+    * standard_deviation - returns the standard deviation of a list of numbers.
 '''
 import sys
 
