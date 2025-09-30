@@ -48,6 +48,23 @@ class TestUtils(unittest.TestCase):
 
         self.assertRaises(SystemExit, my_utils.standard_deviation, [])
 
+    def test_get_column(self):
+        result = my_utils.get_column(
+            '../src/Agrofood_co2_emission.csv',
+            query_column=0,
+            query_value='United States of America',
+            result_column='Forest fires'
+        )
+
+        self.assertIsInstance(result, list)
+        self.assertTrue(len(result) > 0)
+
+        self.assertRaises(SystemExit, my_utils.get_column,
+                          'nonexistentdata.csv',
+                          query_column=0,
+                          query_value='United States of America',
+                          result_column='Forest fires')
+
 
 if __name__ == '__main__':
     unittest.main()
