@@ -19,6 +19,11 @@ def get_column(file_name, query_column, query_value, result_column='Year'):
         Value of the query_column index.
     result_column : str
         Column to return values from.
+
+    Returns
+    -------
+    result : list
+        The list of integers for values from the desired column.
     '''
     result = []
 
@@ -67,8 +72,102 @@ def get_column(file_name, query_column, query_value, result_column='Year'):
                 result.append(int(float(A[result_index])))
             except IndexError:
                 print("Index is out of range.")
+                sys.exit(1)
             except Exception:
                 print('Could not convert to integer.')
+                sys.exit(1)
 
     f.close()
     return result
+
+
+def mean(array):
+    '''Returns the mean value of an array of numbers.
+
+    Parameters
+    ----------
+    array : list
+        Array of numbers to calculate the mean from.
+
+    Returns
+    -------
+    mean : float
+        The mean value of the array.
+    '''
+
+    try:
+        mean = sum(array) / len(array)
+    except ZeroDivisionError:
+        print("Error: Array has length zero.")
+        sys.exit(1)
+
+    return mean
+
+
+def median(array):
+    '''Finds the median value of an array of integers.
+
+    Parameters
+    ----------
+    array : list
+        A list of integers to find the median of.
+
+    Returns
+    -------
+    median : float
+        The median value of the array.
+    '''
+    # First need to sort the array
+    sorted_array = sorted(array)
+
+    # If modulus is not zero
+    if (len(sorted_array) % 2) != 0:
+        # Array length is odd, take middle value
+        i = int(len(sorted_array) / 2)
+        med = sorted_array[i]
+        return med
+
+    # If modulus is zero, array lenght is even
+    elif (len(sorted_array) % 2) == 0:
+
+        # Get indices of two middle values
+        i_1 = int(len(sorted_array) / 2)
+        i_2 = int((len(sorted_array) / 2) - 1)
+
+        try:
+            med = (sorted_array[i_1] + sorted_array[i_2]) / 2
+        except IndexError:
+            print('Error: Empty array!')
+            sys.exit(1)
+
+        return med
+
+
+def standard_deviation(array):
+    '''Finds the standard deviation of an array of integers.
+
+    Parameters
+    ----------
+    array : list
+        A list of integers to find the standard deviation of.
+
+    Returns
+    -------
+    std : float
+        The standard deviation of the array.
+    '''
+    # First, get the mean
+    array_mean = mean(array)
+
+    # Will hold the sum of our residuals
+    residual_sum = 0
+
+    # Get the residuals for each value
+    for val in array:
+        residual = (val - array_mean)**2
+        residual_sum += residual
+
+    # Calculate standard deviation
+    std = (residual_sum / len(array))**0.5
+
+    return std
