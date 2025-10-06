@@ -24,5 +24,11 @@ If the file does not exist, or is inaccessible, an error will be raised. If the 
 
 The `run.sh` file contains examples of successful and failed attempts.
 
+## Continuous Integration
+The repository has automated tests that run on any push or pull request to the master branch. It checks for: 
+- Unit tests (`test_my_utils.py`)
+- Functional tests (`run.sh`)
+- Style checks using pycodestyle 
+
 
 
