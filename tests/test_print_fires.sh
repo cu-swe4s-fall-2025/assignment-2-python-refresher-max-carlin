@@ -3,7 +3,7 @@ test -e ssshtest || curl -s -O https://raw.githubusercontent.com/ryanlayer/sssht
 . ssshtest
 
 SCRIPT=src/print_fires.py
-DATA=test.csv
+DATA=tests/test.csv
 
 run print_fires_success python $SCRIPT --country 'United States of America' --country_column 0 --fires_column 'Forest fires' --file_name $DATA
 assert_stdout
