@@ -15,6 +15,7 @@ jobs:
           environment-file: environment.yml
           init-shell: bash
       - run: python tests/test_my_utils.py
+        shell: bash -l {0}
   run_func_test:
     runs-on: ubuntu-latest
     steps:
