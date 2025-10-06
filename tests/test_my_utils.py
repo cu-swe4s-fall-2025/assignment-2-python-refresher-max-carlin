@@ -50,7 +50,7 @@ class TestUtils(unittest.TestCase):
 
     def test_get_column(self):
         result = my_utils.get_column(
-            'src/Agrofood_co2_emission.csv',
+            'tests/test.csv',
             query_column=0,
             query_value='United States of America',
             result_column='Forest fires'
