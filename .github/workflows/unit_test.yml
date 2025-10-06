@@ -10,12 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: python tests/unit/test_math_lib.py
+      - run: python tests/test_math_lib.py
   run_func_test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: bash tests/func/test_add.sh
+      - run: bash tests/test_add.sh
   run_linter:
     runs-on: ubuntu-latest
     steps:
